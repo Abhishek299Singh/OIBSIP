@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quantum Calc - A premium, modern, glassmorphic calculator application. Experience smooth animations, theme support, and calculation history.">
+    <title>Quantum Calc - Premium Glassmorphic Calculator</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <!-- Animated Background Gradients -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    
+    <main class="calculator-container" id="calculator-container">
+        <!-- Main Calculator Column -->
+        <div class="calc-main-panel">
+            <!-- Header area with Title and Controls -->
+            <header class="calc-header">
+                <h1 class="calc-title">QUANTUM<span>CALC</span></h1>
+                <div class="header-controls">
+                    <!-- History Toggle Button -->
+                    <button id="history-toggle" class="theme-btn" aria-label="Toggle history panel" title="View History">
+                        <svg class="history-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </button>
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle light or dark theme" title="Toggle Theme">
+                        <!-- Sun Icon -->
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <!-- Moon Icon -->
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Calculator Display Screen -->
+            <section class="calc-screen" aria-live="polite">
+                <div id="prev-operand" class="prev-operand"></div>
+                <div id="curr-operand" class="curr-operand" tabindex="0">0</div>
+            </section>
+
+            <!-- Calculator Buttons Grid -->
+            <section class="calc-buttons-grid">
+                <!-- Row 1: Actions -->
+                <button id="btn-ac" class="btn btn-action" data-action="clear">AC</button>
+                <button id="btn-del" class="btn btn-action" data-action="delete">DEL</button>
+                <button id="btn-pct" class="btn btn-operator" data-operator="%">%</button>
+                <button id="btn-div" class="btn btn-operator" data-operator="÷">÷</button>
+
+                <!-- Row 2: Numbers and Multiplier -->
+                <button id="btn-7" class="btn btn-number" data-number="7">7</button>
+                <button id="btn-8" class="btn btn-number" data-number="8">8</button>
+                <button id="btn-9" class="btn btn-number" data-number="9">9</button>
+                <button id="btn-mul" class="btn btn-operator" data-operator="×">×</button>
+
+                <!-- Row 3: Numbers and Subtract -->
+                <button id="btn-4" class="btn btn-number" data-number="4">4</button>
+                <button id="btn-5" class="btn btn-number" data-number="5">5</button>
+                <button id="btn-6" class="btn btn-number" data-number="6">6</button>
+                <button id="btn-sub" class="btn btn-operator" data-operator="−">−</button>
+
+                <!-- Row 4: Numbers and Add -->
+                <button id="btn-1" class="btn btn-number" data-number="1">1</button>
+                <button id="btn-2" class="btn btn-number" data-number="2">2</button>
+                <button id="btn-3" class="btn btn-number" data-number="3">3</button>
+                <button id="btn-add" class="btn btn-operator" data-operator="+">+</button>
+
+                <!-- Row 5: Decimals, Zero, and Equals -->
+                <button id="btn-dot" class="btn btn-number" data-number=".">.</button>
+                <button id="btn-0" class="btn btn-number" data-number="0">0</button>
+                <button id="btn-eq" class="btn btn-equals" data-action="equals">=</button>
+            </section>
+            
+            <!-- Interactive keyboard layout hint footer -->
+            <footer class="keyboard-hint">
+                <span>Press keys for input. <kbd>Esc</kbd> = AC, <kbd>Backspace</kbd> = DEL, <kbd>Enter</kbd> = =</span>
+            </footer>
+        </div>
+
+        <!-- History Sidebar/Drawer Panel -->
+        <section class="calc-history-panel" id="history-panel" aria-label="Calculation History">
+            <div class="history-header">
+                <h2 class="history-title">History</h2>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button id="clear-history" class="clear-history-btn" aria-label="Clear all calculation history" title="Clear History">Clear</button>
+                    <button id="close-history" class="clear-history-btn" aria-label="Close history" title="Close History">✕</button>
+                </div>
+            </div>
+            <div class="history-list" id="history-list">
+                <!-- Dynamically populated calculation items -->
+                <div class="no-history-msg">No recent calculations</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script File -->
+    <script src="script.js"></script>
+</body>
+</html>
