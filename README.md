@@ -8,6 +8,12 @@ The repository is organized into distinct subdirectories for each task:
 
 ```
 OIBSIP/
+├── ToDoList/               # Task 3: FlowTask Minimalist To-Do Web App
+│   ├── index.html          # Layout, forms, and counts
+│   ├── style.css           # Theme styles, custom checkboxes, animations
+│   ├── script.js           # State management, local storage, animation logic
+│   └── README.md           # Task documentation
+│
 ├── Calculator/             # Task 1: Premium Glassmorphic Calculator
 │   ├── index.html          # HTML structure & keyboard layouts
 │   ├── style.css           # Glassmorphism design & color variables
@@ -22,6 +28,19 @@ OIBSIP/
 │
 └── README.md               # Main repository documentation
 ```
+
+---
+
+## 📝 Task 3: FlowTask (Minimalist To-Do Web Application)
+
+A premium, clean, and responsive to-do application built with semantic HTML5, modern CSS3 (with automatic light/dark mode based on system preferences), and Vanilla JavaScript.
+
+### ✨ To-Do List Features
+- **Intelligent Task State Management**: Segregates pending tasks from completed tasks automatically.
+- **Custom Interactive Checkboxes**: Features smooth scale transitions and animated checkmarks.
+- **Seamless LocalStorage Integration**: Keeps your daily intentions synchronized across reload/close cycles.
+- **Fluid Micro-Animations**: Employs fade-out and slide-in visual transitions when adding, completing, or removing items.
+- **Fully Responsive Design**: Styled from scratch to scale elegantly across mobiles, tablets, and desktops.
 
 ---
 
@@ -63,8 +82,8 @@ Since these are pure static frontend applications (no node packages or bundlers 
    ```bash
    git clone https://github.com/Abhishek299Singh/OIBSIP.git
    ```
-2. Navigate into either directory:
-   - Double-click `index.html` inside `Calculator/` or `TributePage/` to open it in any modern web browser.
+2. Navigate into any directory:
+   - Double-click `index.html` inside `ToDoList/`, `Calculator/`, or `TributePage/` to open it in any modern web browser.
    - Alternatively, spin up a local development server in the repository directory:
      ```bash
      # Using Python
