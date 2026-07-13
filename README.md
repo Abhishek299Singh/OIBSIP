@@ -8,6 +8,14 @@ The repository is organized into distinct subdirectories for each task:
 
 ```
 OIBSIP/
+├── LoginAuthSystem/        # Task 4: FlowAuth Login Authentication System
+│   ├── index.html          # Login layout
+│   ├── signup.html         # Registration layout
+│   ├── dashboard.html      # Protected user area
+│   ├── style.css           # Glassmorphism layouts & animations
+│   ├── script.js           # Credentials matching & route guards
+│   └── README.md           # Task documentation
+│
 ├── ToDoList/               # Task 3: FlowTask Minimalist To-Do Web App
 │   ├── index.html          # Layout, forms, and counts
 │   ├── style.css           # Theme styles, custom checkboxes, animations
@@ -28,6 +36,18 @@ OIBSIP/
 │
 └── README.md               # Main repository documentation
 ```
+
+---
+
+## 🔒 Task 4: FlowAuth (Login Authentication System)
+
+A premium, highly secure, and responsive user authentication flow built with semantic HTML5, modern CSS3 (glassmorphic overlays and custom focus state glows), and Vanilla JavaScript.
+
+### ✨ Login Authentication Features
+- **User Signup Panel**: Form-field validation, password strength meters (strength score calculation depending on characters used), and confirm matching logic.
+- **User Login Panel**: Credentials checks against `localStorage` account databases with animated field-shake feedback on verification failure.
+- **Client-Side Route Guarding**: Immediate HTML head-level scripts preventing unauthenticated dashboard visits and blocking logged-in users from seeing registration pages.
+- **Interactive Dashboard Workspace**: Personal profile statistics, customizable time-of-day greetings, auto initials avatars, and active session action logs.
 
 ---
 
@@ -83,7 +103,7 @@ Since these are pure static frontend applications (no node packages or bundlers 
    git clone https://github.com/Abhishek299Singh/OIBSIP.git
    ```
 2. Navigate into any directory:
-   - Double-click `index.html` inside `ToDoList/`, `Calculator/`, or `TributePage/` to open it in any modern web browser.
+   - Double-click `index.html` inside `LoginAuthSystem/`, `ToDoList/`, `Calculator/`, or `TributePage/` to open it in any modern web browser.
    - Alternatively, spin up a local development server in the repository directory:
      ```bash
      # Using Python
