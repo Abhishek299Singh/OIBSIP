@@ -1,76 +1,76 @@
-# 🌌 Quantum Calc - Premium Glassmorphic Calculator
+# 🌌 Oasis Infobyte SIP - Web Development Tasks
 
-Quantum Calc is a highly-polished, responsive calculator web application designed with modern glassmorphism aesthetics, fluid micro-animations, standard pocket calculator mathematics, and full physical keyboard support.
-
-![Responsive Design](https://img.shields.io/badge/Responsive-Yes-brightgreen)
-![Pure Tech](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla%20JS-blue)
-![License](https://img.shields.io/badge/License-MIT-orange)
-
-## ✨ Features
-
-- **Obsidian Glass Design**: Beautiful backdrop filters, dynamic outer borders, and dual ambient glowing lights that float in the background.
-- **Responsive Layout**: Fluid column grids that wrap perfectly from mobile screens (supports landscape and portrait viewports) to large monitors.
-- **Theme Switcher**: Fluid toggle between **Obsidian Dark** and **Opal Light** themes with automatic storage preservation (`localStorage`).
-- **Mathematical Accuracy**:
-  - Handles basic arithmetic: Addition, Subtraction, Multiplication, Division.
-  - Custom floating-point rounding system to resolve standard JS float bugs (e.g. `0.1 + 0.2 = 0.3`).
-  - Native percentage (`%`) operator scaling.
-  - Robust bounds checking for division by zero (shows `"Cannot divide by 0"`).
-- **Physical Keyboard Integration**: Fully interactive keyboard map that visually presses the corresponding buttons in the grid.
-- **Compact Viewport Optimization**: Dynamically shrinks font sizes on long input strings to avoid numerical overflows.
-
-## 🚀 How to Run Locally
-
-Since this is a standard frontend application with no external dependencies or bundlers, it can be launched directly:
-
-1. Clone or download the repository.
-2. Double-click the [index.html](file:///C:/Users/STUDENT/Desktop/project/index.html) file to open it in any modern browser.
-3. *Alternatively*, spin up a local development server in the project directory:
-   ```bash
-   npx serve .
-   # or
-   python -m http.server 8000
-   ```
-
-## ☁️ Uploading to GitHub without Git CLI
-
-Since Git is not installed on this system by default, a custom PowerShell script `upload_to_github.ps1` is included in this folder. To use it:
-1. Open PowerShell inside the project folder (`C:\Users\STUDENT\Desktop\project`).
-2. Run:
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\upload_to_github.ps1
-   ```
-3. Input your GitHub username, the desired repository name, and a GitHub Personal Access Token (PAT).
-
-Alternatively, you can open this folder using **Visual Studio Code** (available on your Desktop) and click the **Publish to GitHub** button under the Source Control tab, which handles authentication automatically through your browser.
-
-## 🎹 Keyboard Shortcuts
-
-The app automatically binds your physical keyboard to the UI inputs:
-
-| Keyboard Key | Action |
-|---|---|
-| `0` - `9` | Appends digits |
-| `.` | Appends decimal |
-| `+` | Add |
-| `-` | Subtract |
-| `*` | Multiply |
-| `/` | Divide |
-| `%` | Percent |
-| `Backspace` | Delete last digit (DEL) |
-| `Escape` or `Delete` | Clear all (AC) |
-| `Enter` or `=` | Compute formula (=) |
+This repository contains my frontend development submissions for the AICTE Oasis Infobyte Summer Internship Program (SIP).
 
 ## 📂 Project Structure
 
+The repository is organized into distinct subdirectories for each task:
+
 ```
-project/
-├── index.html            # Main layout structure & accessibility tags
-├── style.css             # Responsive CSS variables, glassmorphic layout, & keyframes
-├── script.js             # OOP Calculator class, theme handling, and history engine
-├── upload_to_github.ps1  # Custom PowerShell script to upload to GitHub via API
-└── .gitignore            # Git files exclusion configuration
+OIBSIP/
+├── Calculator/             # Task 1: Premium Glassmorphic Calculator
+│   ├── index.html          # HTML structure & keyboard layouts
+│   ├── style.css           # Glassmorphism design & color variables
+│   └── script.js           # Calculator math engine & keyboard controls
+│
+├── TributePage/            # Task 2: Nikola Tesla Tribute Page
+│   ├── index.html          # Semantic page layout & inline SVG vector graphs
+│   ├── styles.css          # Cyber-electric theme, layouts & keyframes
+│   ├── app.js              # Canvas simulations & Web Audio hum synth
+│   └── assets/             # Historical visual assets
+│       └── tesla_hero.jpg  # Vintage photograph of Nikola Tesla
+│
+└── README.md               # Main repository documentation
 ```
 
-## 📝 License
-This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
+---
+
+## ⚡ Task 2: Nikola Tesla Tribute Page (The Maverick of Electricity)
+
+A premium, highly interactive single-page application built using HTML5, CSS3, and Vanilla JavaScript, honoring the legacy of Nikola Tesla.
+
+### ✨ Tribute Page Features
+- **Interactive Lightning Canvas Background**: Features a custom-rendered physics canvas in the Hero section. Floating energy nodes trace dynamic electric sparks to the user's cursor on hover.
+- **Interactive Wireless Transmission Lab**: 
+  - Users can click-and-drag the **Receiver Bulb** closer to the **Wardenclyffe Tower**.
+  - A dedicated canvas draws jagged electrical arcs connecting the two nodes as they approach.
+  - Interactive dashboard meters dynamically display power efficiency and voltage levels.
+  - A **Boost Resonant Frequency** button triggers a temporary power overload, visual flashing, and metric jumps.
+- **Web Audio Hum Synthesizer**: Generates low-frequency AC electrical transformer hum and high-frequency spark crackles directly in code using browser oscillators when toggled.
+- **Dynamic Stats Counter**: Important statistics (300+ patents, etc.) count up dynamically when scrolled into view.
+- **Wisdom Quotes Rotator**: A smooth quote carousel fading through his most inspiring words.
+- **Historical Assets**: Features the iconic photograph of Tesla holding a glowing wireless light bulb.
+
+---
+
+## 🧮 Task 1: Quantum Calc (Premium Glassmorphic Calculator)
+
+A polished calculator web application designed with modern glassmorphism aesthetics, fluid micro-animations, standard pocket calculator mathematics, and physical keyboard support.
+
+### ✨ Calculator Features
+- **Obsidian Glass Design**: backdrop filters, glowing outer borders, and ambient floating backlights.
+- **Theme Switcher**: Fluid toggle between **Obsidian Dark** and **Opal Light** themes with `localStorage` state preservation.
+- **Mathematical Accuracy**: Custom floating-point rounding system to resolve Javascript precision issues, bounds checking for dividing by zero, and native percentage (`%`) operator scaling.
+- **Physical Keyboard Integration**: Binds physical keyboard keys to the UI buttons, triggering visual presses.
+
+---
+
+## 🚀 How to Run Locally
+
+Since these are pure static frontend applications (no node packages or bundlers required), you can launch them directly:
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/Abhishek299Singh/OIBSIP.git
+   ```
+2. Navigate into either directory:
+   - Double-click `index.html` inside `Calculator/` or `TributePage/` to open it in any modern web browser.
+   - Alternatively, spin up a local development server in the repository directory:
+     ```bash
+     # Using Python
+     python -m http.server 8000
+     
+     # Using Node.js
+     npx serve .
+     ```
+3. Open `http://localhost:8000` in your web browser.
