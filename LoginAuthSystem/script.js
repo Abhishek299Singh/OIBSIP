@@ -230,6 +230,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
+    // GOOGLE OAUTH IDENTITY SERVICES & MOCK FLOWS
+    // --------------------------------------------------------------------------
+    const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+
+    // Decode base64 JWT payload client-side (for real Google credentials)
+    const decodeJwt = (token) => {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            console.error('JWT decoding failed:', e);
+            return null;
+        }
+    };
+
+    // Shared Sign-in Handler for Google logins (Real & Simulated)
+    const loginWithGoogleAccount = (email, name, pictureUrl, googleId) => {
+        const users = getUsers();
+        let userIndex = users.findIndex(u => u.email.toLowerCase() === email.toLowerCase());
+
+        if (userIndex === -1) {
+            // Automatically sign up user if not exists
+            const newUser = {
+                id: 'G_' + googleId.substring(0, 10),
+                name: name,
+                email: email,
+                password: 'google_oauth_bypass_' + Math.random().toString(36).substr(2, 5),
+                loginsCount: 1,
+                picture: pictureUrl
+            };
+            users.push(newUser);
+            saveUsers(users);
+            userIndex = users.length - 1;
+        } else {
+            // Update counter and picture
+            users[userIndex].picture = pictureUrl;
+            users[userIndex].loginsCount = (users[userIndex].loginsCount || 0) + 1;
+            saveUsers(users);
+        }
+
+        // Set session
+        const sessionData = {
+            id: users[userIndex].id,
+            name: name,
+            email: email,
+            loginsCount: users[userIndex].loginsCount,
+            picture: pictureUrl
+        };
+        localStorage.setItem('oibsip_session', JSON.stringify(sessionData));
+
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+    };
+
+    // Google Sign-In Callback (for real Google auth)
+    const handleGoogleCallback = (response) => {
+        const payload = decodeJwt(response.credential);
+        if (payload && payload.email) {
+            loginWithGoogleAccount(payload.email, payload.name, payload.picture, payload.sub);
+        } else {
+            showNotification('Google Authentication failed. Try again.', 'error');
+        }
+    };
+
+    // Initialize Google elements on page load
+    const initializeGoogleAuth = () => {
+        const googleBtnDiv = document.getElementById('google-signin-btn');
+        const mockGoogleBtn = document.getElementById('mock-google-signin-btn');
+        
+        if (!googleBtnDiv || !mockGoogleBtn) return;
+
+        const isPlaceholder = GOOGLE_CLIENT_ID.startsWith('YOUR_GOOGLE_CLIENT_ID');
+
+        if (isPlaceholder) {
+            // Enable simulated selection modal
+            googleBtnDiv.style.display = 'none';
+            mockGoogleBtn.style.display = 'flex';
+
+            const mockModal = document.getElementById('mock-google-modal');
+            const cancelBtn = document.getElementById('cancel-google-btn');
+            const accountItems = document.querySelectorAll('.google-account-item');
+
+            mockGoogleBtn.addEventListener('click', () => {
+                mockModal.classList.remove('hidden');
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                mockModal.classList.add('hidden');
+            });
+
+            accountItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const email = item.getAttribute('data-email');
+                    const name = item.getAttribute('data-name');
+                    const pic = item.getAttribute('data-pic');
+                    const mockId = 'MOCK_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                    
+                    mockModal.classList.add('hidden');
+                    loginWithGoogleAccount(email, name, pic, mockId);
+                });
+            });
+        } else {
+            // Enable real Google Sign-In
+            mockGoogleBtn.style.display = 'none';
+            googleBtnDiv.style.display = 'flex';
+
+            window.addEventListener('load', () => {
+                if (typeof google !== 'undefined') {
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_CLIENT_ID,
+                        callback: handleGoogleCallback
+                    });
+                    google.accounts.id.renderButton(
+                        googleBtnDiv,
+                        { theme: "outline", size: "large", width: "100%", shape: "rectangular" }
+                    );
+                } else {
+                    console.warn('Google client library could not be loaded. Displaying mock fallback.');
+                    googleBtnDiv.style.display = 'none';
+                    mockGoogleBtn.style.display = 'flex';
+                }
+            });
+        }
+    };
+
+    // --------------------------------------------------------------------------
     // SIGN IN PAGE ENGINE (index.html)
     // --------------------------------------------------------------------------
     const loginForm = document.getElementById('login-form');
@@ -238,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const passwordInput = document.getElementById('login-password');
 
         setupPasswordToggle('login-password', 'toggle-password');
+        initializeGoogleAuth();
 
         // Check for redirect queries
         const urlParams = new URLSearchParams(window.location.search);
@@ -295,7 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                loginsCount: user.loginsCount
+                loginsCount: user.loginsCount,
+                picture: user.picture || null
             };
             localStorage.setItem('oibsip_session', JSON.stringify(sessionData));
 
@@ -347,14 +479,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         welcomeGreeting.textContent = `${greeting}, ${session.name}!`;
 
-        // Profile Avatar Initials
+        // Profile Avatar Initials or Picture
         if (avatarLetters && session.name) {
-            const parts = session.name.split(' ');
-            let initials = parts[0].charAt(0).toUpperCase();
-            if (parts.length > 1) {
-                initials += parts[parts.length - 1].charAt(0).toUpperCase();
+            if (session.picture) {
+                avatarLetters.innerHTML = `<img src="${session.picture}" alt="${session.name}">`;
+                avatarLetters.style.padding = '0';
+            } else {
+                const parts = session.name.split(' ');
+                let initials = parts[0].charAt(0).toUpperCase();
+                if (parts.length > 1) {
+                    initials += parts[parts.length - 1].charAt(0).toUpperCase();
+                }
+                avatarLetters.textContent = initials;
             }
-            avatarLetters.textContent = initials;
         }
 
         // Fill activity logs dynamic stamp

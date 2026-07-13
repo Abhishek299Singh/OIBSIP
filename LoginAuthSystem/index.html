@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Shared Styles -->
     <link rel="stylesheet" href="style.css">
+    <!-- Google Identity Services client script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Immediate Route Guard to prevent logged-in users from seeing login page -->
     <script>
         if (localStorage.getItem('oibsip_session')) {
@@ -87,10 +89,60 @@
             </button>
         </form>
 
+        <!-- Social Divider -->
+        <div class="auth-divider">
+            <span>or</span>
+        </div>
+
+        <!-- Google OAuth Button -->
+        <div class="google-auth-wrapper">
+            <div id="google-signin-btn"></div>
+            <!-- Mock Google Button (renders when client ID is placeholder) -->
+            <button type="button" id="mock-google-signin-btn" class="google-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="google-logo">
+                <span>Continue with Google</span>
+            </button>
+        </div>
+
         <!-- Redirect Link -->
         <footer class="auth-footer">
             <p>Don't have an account? <a href="signup.html">Create one here</a></p>
         </footer>
+    </div>
+
+    <!-- Mock Google Account Selector Modal -->
+    <div id="mock-google-modal" class="modal-overlay hidden">
+        <div class="google-modal-card">
+            <header class="google-modal-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="modal-google-logo">
+                <h2>Sign in with Google</h2>
+                <p>to continue to <strong>FlowAuth</strong></p>
+            </header>
+            <div class="google-accounts-list">
+                <button class="google-account-item" data-email="abhishek.singh@gmail.com" data-name="Abhishek Singh" data-pic="https://lh3.googleusercontent.com/a/default-user=s96-c">
+                    <div class="account-avatar">AS</div>
+                    <div class="account-info">
+                        <span class="account-name">Abhishek Singh</span>
+                        <span class="account-email">abhishek.singh@gmail.com</span>
+                    </div>
+                </button>
+                <button class="google-account-item" data-email="jane.doe@gmail.com" data-name="Jane Doe" data-pic="https://lh3.googleusercontent.com/a/default-user=s96-c">
+                    <div class="account-avatar jane">JD</div>
+                    <div class="account-info">
+                        <span class="account-name">Jane Doe</span>
+                        <span class="account-email">jane.doe@gmail.com</span>
+                    </div>
+                </button>
+                <button class="google-account-item" data-email="guest.developer@gmail.com" data-name="Guest Developer" data-pic="https://lh3.googleusercontent.com/a/default-user=s96-c">
+                    <div class="account-avatar guest">GD</div>
+                    <div class="account-info">
+                        <span class="account-name">Guest Developer</span>
+                        <span class="account-email">guest.developer@gmail.com</span>
+                    </div>
+                </button>
+            </div>
+            <button id="cancel-google-btn" class="cancel-modal-btn">Cancel</button>
+        </div>
     </div>
 
     <!-- Core Script -->
