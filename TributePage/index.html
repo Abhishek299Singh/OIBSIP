@@ -206,8 +206,30 @@
         <div class="grid innovation-grid">
             <div class="innovation-card">
                 <div class="card-img-container">
-                    <div class="circuit-grid"></div>
-                    <img src="assets/tesla_coil.jpg" alt="Tesla Coil" class="card-img">
+                    <div class="svg-visual">
+                        <svg viewBox="0 0 100 100" class="svg-icon">
+                            <!-- Base of coil -->
+                            <rect x="35" y="80" width="30" height="8" rx="2" fill="#7000ff"/>
+                            <!-- Primary Winding (Vertical coil lines) -->
+                            <line x1="50" y1="80" x2="50" y2="40" stroke="#00d2ff" stroke-width="6" stroke-linecap="round"/>
+                            <!-- Coil rings decoration -->
+                            <line x1="45" y1="75" x2="55" y2="75" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="70" x2="55" y2="70" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="65" x2="55" y2="65" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="60" x2="55" y2="60" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="55" x2="55" y2="55" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="50" x2="55" y2="50" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="45" y1="45" x2="55" y2="45" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Toroid Dome at top -->
+                            <ellipse cx="50" cy="38" rx="18" ry="8" fill="#ffb300" stroke="#ffffff" stroke-width="1.5"/>
+                            <!-- Glowing ring around top -->
+                            <circle cx="50" cy="38" r="22" stroke="#00d2ff" stroke-width="1.5" stroke-dasharray="4, 4" fill="none" class="spinning"/>
+                            <!-- Electric discharges / Sparks radiating outward -->
+                            <path d="M 50,30 L 50,15" stroke="#00d2ff" stroke-width="1.5" class="pulse-wave wave-1"/>
+                            <path d="M 32,38 L 18,38" stroke="#00d2ff" stroke-width="1.5" class="pulse-wave wave-1"/>
+                            <path d="M 68,38 L 82,38" stroke="#00d2ff" stroke-width="1.5" class="pulse-wave wave-1"/>
+                        </svg>
+                    </div>
                 </div>
                 <div class="card-body">
                     <h3>The Tesla Coil</h3>
