@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Oasis Infobyte Summer Internship Program (SIP) - Web Development Portfolio by Abhishek Singh. Explore interactive projects including Login Authentication, To-Do List, Tribute Page, and Calculator.">
+    <title>Oasis Infobyte Web Development Projects | Abhishek Singh</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Design Tokens & Reset */
+        :root {
+            --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --transition-speed: 0.4s;
+            --transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Dark Theme Colors */
+            --bg-page: radial-gradient(circle at 50% 50%, #0f121d 0%, #05060b 100%);
+            --glow-1: rgba(139, 92, 246, 0.15); /* Purple */
+            --glow-2: rgba(6, 182, 212, 0.15);  /* Cyan */
+            
+            --bg-card: rgba(15, 23, 42, 0.45);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --shadow-card: rgba(0, 0, 0, 0.4);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-page);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Glows */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(140px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.8;
+            animation: pulse 12s infinite alternate ease-in-out;
+        }
+
+        .bg-glow-1 {
+            background: var(--glow-1);
+            top: -10%;
+            left: 10%;
+        }
+
+        .bg-glow-2 {
+            background: var(--glow-2);
+            bottom: -10%;
+            right: 10%;
+            animation-delay: -6s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(30px, 30px); }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 60px 24px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        /* Header section */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #f8fafc 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        /* Premium Card Design */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all var(--transition-speed) var(--transition-ease);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+            opacity: 0;
+            transition: opacity var(--transition-speed) var(--transition-ease);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Card Icon */
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            transition: transform var(--transition-speed) var(--transition-ease);
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Theme Specific Card Glows */
+        .card-calc .card-icon {
+            background: rgba(124, 58, 237, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(124, 58, 237, 0.25);
+        }
+
+        .card-tribute .card-icon {
+            background: rgba(6, 182, 212, 0.15);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+        }
+
+        .card-todo .card-icon {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .card-auth .card-icon {
+            background: rgba(244, 63, 94, 0.15);
+            color: #fb7185;
+            border: 1px solid rgba(244, 63, 94, 0.25);
+        }
+
+        /* Card Info */
+        .card-task-no {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .card h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        /* Action Link */
+        .card-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: gap var(--transition-speed) var(--transition-ease);
+        }
+
+        .card:hover .card-link {
+            gap: 12px;
+        }
+
+        .card-calc:hover .card-link { color: #a78bfa; }
+        .card-tribute:hover .card-link { color: #22d3ee; }
+        .card-todo:hover .card-link { color: #34d399; }
+        .card-auth:hover .card-link { color: #fb7185; }
+
+        .card-link i {
+            font-size: 0.8rem;
+            transition: transform var(--transition-speed) var(--transition-ease);
+        }
+
+        .card:hover .card-link i {
+            transform: translateX(2px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 1200px;
+            z-index: 10;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #a78bfa;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 40px 16px; }
+            header { margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background glow gradients -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    
+    <div class="container">
+        <!-- Main Portfolio Header -->
+        <header>
+            <span class="badge">Oasis Infobyte SIP</span>
+            <h1>Web Development Portfolio</h1>
+            <p>A showcase of clean, responsive, and highly interactive web applications built during my frontend development internship.</p>
+        </header>
+
+        <!-- Project Cards Grid -->
+        <main class="grid">
+            <!-- Task 1: Calculator -->
+            <a href="./Calculator/index.html" class="card card-calc">
+                <div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <span class="card-task-no">Task 1</span>
+                    <h2>Quantum Calc</h2>
+                    <p>A premium calculator app designed with modern glassmorphism aesthetics, Opal Light/Obsidian Dark themes, and physical keyboard event listener support.</p>
+                </div>
+                <div class="card-link">
+                    <span>Launch Calculator</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- Task 2: Tribute Page -->
+            <a href="./TributePage/index.html" class="card card-tribute">
+                <div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="card-task-no">Task 2</span>
+                    <h2>Nikola Tesla Tribute</h2>
+                    <p>A highly interactive single-page application honoring Nikola Tesla's legacy, featuring active lighting canvas effects and Web Audio humming synthesizer.</p>
+                </div>
+                <div class="card-link">
+                    <span>Launch Tribute Page</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- Task 3: ToDoList -->
+            <a href="./ToDoList/index.html" class="card card-todo">
+                <div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <span class="card-task-no">Task 3</span>
+                    <h2>FlowTask Web App</h2>
+                    <p>A minimalist to-do web application featuring local storage state synchronization, dynamic counts, custom checkboxes, and fluid micro-animations.</p>
+                </div>
+                <div class="card-link">
+                    <span>Launch To-Do App</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- Task 4: LoginAuthSystem -->
+            <a href="./LoginAuthSystem/index.html" class="card card-auth">
+                <div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="card-task-no">Task 4</span>
+                    <h2>FlowAuth Login</h2>
+                    <p>A secure user registration and login gateway supporting client-side routing protection, credentials matching, and Google OAuth integration.</p>
+                </div>
+                <div class="card-link">
+                    <span>Launch Login System</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Developed with ❤️ by <a href="https://github.com/Abhishek299Singh" target="_blank" rel="noopener">Abhishek Singh</a> &copy; 2026. Powered by GitHub Pages.</p>
+        </footer>
+    </div>
+</body>
+</html>
