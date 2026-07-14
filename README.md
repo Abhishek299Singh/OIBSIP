@@ -8,33 +8,33 @@ The repository is organized into distinct subdirectories for each task:
 
 ```
 OIBSIP/
-├── LoginAuthSystem/        # Task 4: FlowAuth Login Authentication System
-│   ├── index.html          # Login layout
-│   ├── signup.html         # Registration layout
-│   ├── dashboard.html      # Protected user area
-│   ├── style.css           # Glassmorphism layouts & animations
-│   ├── script.js           # Credentials matching & route guards
-│   └── README.md           # Task documentation
+├── Abhishek Singh_Level 2 Task4/   # Task 4: FlowAuth Login Authentication System
+│   ├── index.html                  # Login layout
+│   ├── signup.html                 # Registration layout
+│   ├── dashboard.html              # Protected user area
+│   ├── style.css                   # Glassmorphism layouts & animations
+│   ├── script.js                   # Credentials matching & route guards
+│   └── README.md                   # Task documentation
 │
-├── ToDoList/               # Task 3: FlowTask Minimalist To-Do Web App
-│   ├── index.html          # Layout, forms, and counts
-│   ├── style.css           # Theme styles, custom checkboxes, animations
-│   ├── script.js           # State management, local storage, animation logic
-│   └── README.md           # Task documentation
+├── Abhishek Singh_Level 2 Task3/   # Task 3: FlowTask Minimalist To-Do Web App
+│   ├── index.html                  # Layout, forms, and counts
+│   ├── style.css                   # Theme styles, custom checkboxes, animations
+│   ├── script.js                   # State management, local storage, animation logic
+│   └── README.md                   # Task documentation
 │
-├── Calculator/             # Task 1: Premium Glassmorphic Calculator
-│   ├── index.html          # HTML structure & keyboard layouts
-│   ├── style.css           # Glassmorphism design & color variables
-│   └── script.js           # Calculator math engine & keyboard controls
+├── Abhishek Singh_Level 2 Task1/   # Task 1: Premium Glassmorphic Calculator
+│   ├── index.html                  # HTML structure & keyboard layouts
+│   ├── style.css                   # Glassmorphism design & color variables
+│   └── script.js                   # Calculator math engine & keyboard controls
 │
-├── TributePage/            # Task 2: Nikola Tesla Tribute Page
-│   ├── index.html          # Semantic page layout & inline SVG vector graphs
-│   ├── styles.css          # Cyber-electric theme, layouts & keyframes
-│   ├── app.js              # Canvas simulations & Web Audio hum synth
-│   └── assets/             # Historical visual assets
-│       └── tesla_hero.jpg  # Vintage photograph of Nikola Tesla
+├── Abhishek Singh_Level 2 Task2/   # Task 2: Nikola Tesla Tribute Page
+│   ├── index.html                  # Semantic page layout & inline SVG vector graphs
+│   ├── styles.css                  # Cyber-electric theme, layouts & keyframes
+│   ├── app.js                      # Canvas simulations & Web Audio hum synth
+│   └── assets/                     # Historical visual assets
+│       └── tesla_hero.jpg          # Vintage photograph of Nikola Tesla
 │
-└── README.md               # Main repository documentation
+└── README.md                       # Main repository documentation
 ```
 
 ---
